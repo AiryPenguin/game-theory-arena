@@ -43,16 +43,16 @@ export function App() {
   }
   return (
     <div className="min-h-dvh bg-slate-100 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
-      <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-slate-900/90">
+      <header className="sticky top-[env(safe-area-inset-top,0px)] z-30 border-b border-slate-200 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-slate-900/90">
         <div className="mx-auto flex max-w-3xl items-center gap-3 px-4 py-2">
-          <a href="#/" className="shrink-0 font-extrabold text-indigo-700 dark:text-indigo-300">
+          <a href="#start" className="shrink-0 font-extrabold text-indigo-700 dark:text-indigo-300">
             ♟️ <span className="hidden sm:inline">GT Arena</span>
           </a>
           <nav className="-mx-1 flex flex-1 gap-1 overflow-x-auto">
             {NAV.slice(1).map((n) => (
               <a
                 key={n.to}
-                href={`#${n.to}`}
+                href={`#${n.to.slice(1)}`}
                 className={`shrink-0 rounded-lg px-2.5 py-1.5 text-sm font-medium ${
                   route.path === n.to
                     ? 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-100'

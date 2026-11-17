@@ -3,7 +3,7 @@ import { CONCEPTS, GAME_NAMES } from '../../learning/concepts';
 import { errorRate, MAX_BOX } from '../../learning/srs';
 import { navigate } from '../../router';
 import { useArena } from '../../state/ArenaContext';
-import { Button, Card, H2, Pill } from '../../ui/basics';
+import { Button, Card, ConfirmButton, H2, Pill } from '../../ui/basics';
 
 export function StatsPage() {
   const { progress, counters, resetProgress } = useArena();
@@ -75,14 +75,7 @@ export function StatsPage() {
           })}
         </ul>
       </Card>
-      <Button
-        variant="ghost"
-        onClick={() => {
-          if (window.confirm('Statistik, Wiederholungsplan und Erfolge wirklich löschen?')) resetProgress();
-        }}
-      >
-        Statistik zurücksetzen
-      </Button>
+      <ConfirmButton label="Statistik zurücksetzen" question="Statistik, Wiederholungsplan und Erfolge wirklich löschen?" confirmLabel="Ja, löschen" onConfirm={resetProgress} />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { GLOSSARY } from '../../learning/glossary';
 import { ACHIEVEMENTS } from '../../learning/achievements';
 import { useArena } from '../../state/ArenaContext';
-import { Button, Card } from '../../ui/basics';
+import { Card, ConfirmButton } from '../../ui/basics';
 import { RichText } from '../../ui/RichText';
 
 export function GlossaryPage() {
@@ -90,14 +90,7 @@ export function LeaderboardPage() {
         )}
       </Card>
       {leaderboard.length > 0 && (
-        <Button
-          variant="ghost"
-          onClick={() => {
-            if (window.confirm('Neue Session starten und Bestenliste leeren?')) resetLeaderboard();
-          }}
-        >
-          Neue Session (Bestenliste leeren)
-        </Button>
+        <ConfirmButton label="Neue Session (Bestenliste leeren)" question="Bestenliste wirklich leeren?" confirmLabel="Ja, leeren" onConfirm={resetLeaderboard} />
       )}
     </div>
   );

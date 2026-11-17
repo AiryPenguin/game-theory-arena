@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import { useState, type ButtonHTMLAttributes, type ReactNode } from 'react';
 
 type Variant = 'primary' | 'secondary' | 'ghost' | 'danger';
 
@@ -80,3 +80,31 @@ export function Choice({
 
 export const inputClass =
   'w-full min-h-11 rounded-xl bg-white px-3 py-2 text-base ring-1 ring-slate-300 outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-slate-800 dark:ring-slate-600';
+
+/** Destructive action with an in-page confirmation step (browser dialogs are not always available). */
+export function ConfirmButton({ label, question, confirmLabel, onConfirm }: { label: string; question: string; confirmLabel: string; onConfirm: () => void }) {
+  const [asking, setAsking] = useState(false);
+  if (!asking)
+    return (
+      <Button variant="ghost" onClick={() => setAsking(true)}>
+        {label}
+      </Button>
+    );
+  return (
+    <div className="flex flex-wrap items-center gap-2 rounded-xl bg-rose-50 p-3 ring-1 ring-rose-200 dark:bg-rose-950/40 dark:ring-rose-800">
+      <span className="text-sm font-medium">{question}</span>
+      <Button
+        variant="danger"
+        onClick={() => {
+          onConfirm();
+          setAsking(false);
+        }}
+      >
+        {confirmLabel}
+      </Button>
+      <Button variant="secondary" onClick={() => setAsking(false)}>
+        Abbrechen
+      </Button>
+    </div>
+  );
+}

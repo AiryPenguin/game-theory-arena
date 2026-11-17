@@ -61,7 +61,7 @@ export function Curtain({ name, message, onReady }: { name: string; message?: st
 export function Toasts() {
   const { toasts, dismissToast } = useArena();
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-3 z-50 flex flex-col items-center gap-2 px-4" aria-live="polite">
+    <div className="pointer-events-none fixed inset-x-0 bottom-[calc(0.75rem+env(safe-area-inset-bottom,0px))] z-50 flex flex-col items-center gap-2 px-4" aria-live="polite">
       {toasts.map((t) => (
         <ToastItem key={t.id} {...t} onClose={() => dismissToast(t.id)} />
       ))}
